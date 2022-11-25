@@ -1,0 +1,50 @@
+<%-include("partials/navbar.ejs")%>
+    <%-include("partials/title.ejs",{title:"JEWELLERY STORE"})%>
+        <form class="row g-3 card" action="/additem" method="post" style="width: 50%; color: rgb(210, 179,3); border-color: rgb(210, 179,3); min-width: 300px; padding: 20px; margin:auto; margin-top: 20px;">
+            <div class=" col-md-4 ">
+                <label for="validationDefault01 " class="form-label ">Item Name </label>
+                <input type="text " name="name" class="form-control" id="validationDefault01 " placeholder="item" required>
+            </div>
+            <div class="col-md-4 ">
+                <label for="validationDefault02 " class="form-label ">Weight of Item</label>
+                <input type="text " name="weight" class="form-control " id="validationDefault02 " placeholder="(in g)" required>
+            </div>
+            <div class="col-md-4 ">
+                <label for="validationDefault03 " class="form-label ">Cost of Item</label>
+                <input type="text " name="cost" class="form-control " id="validationDefault03 " placeholder="(in Rs)" required>
+            </div>
+            <div class="col-md-4 ">
+                <label for="validationDefault04 " class="form-label ">Description</label>
+                <input type="text " name="desc" class=" form-control " id="validationDefault04 " required>
+            </div>
+            <div class="form-group ">
+                <label for="exampleFormControlFile1 ">Upload Item Image</label>
+                <input type="file " class="form-control-file " id="exampleFormControlFile1 ">
+            </div>
+            <div class="col-12 ">
+                <a href="# ">
+                    <button type="submit " class="btn btn-primary ">Add item</button>
+                </a>
+            </div>
+        </form>
+
+        <!-- <div>
+    <form class="row g-3 card " action="/additem " method="post " style="width: 50%; color: rgb(210, 179,3); border-color: rgb(210, 179,3); min-width: 300px; padding: 20px; margin:auto; margin-top: 20px; ">
+        <div class=" col-md-4 ">
+            <label for="validationDefault01 " class="form-label ">Item Name </label>
+            <input type="text " name="itemName " class="form-control " id="validationDefault01 " placeholder="item " required>
+        </div>
+        <div class="col-md-2 ">
+            <label for="inputWeight " class="form-label ">Item weight</label>
+            <input type="text " name="weight " class="form-control " id="inputWeight ">
+        </div>
+        <div class="col-md-2 ">
+            <label for="inputpercent " class="form-label ">Gold percentage </label>
+            <input type="text " name="percent " class="form-control " id="inputpercent ">
+        </div>
+        <div class="col-md-2 ">
+            <label for="inputCost " class="form-label ">Cost of Item</label>
+            <input type="text " name="cost " class="form-control " id="inputCost ">
+        </div>
+    </form>
+</div> -->

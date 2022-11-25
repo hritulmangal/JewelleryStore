@@ -1,0 +1,40 @@
+<%-include("partials/navbar.ejs")%>
+    <%-include("partials/title.ejs",{title:"JEWELLERY STORE"})%>
+        <%-include("partials/search.ejs")%>
+            <!-- <div>
+                <%-include("partials/cards.ejs",{title:"Item 1",weight:"weight",cost:"cost",description:"This is the description of item 1.",link:"#"})%>
+            </div>
+            <div>
+                <%-include("partials/cards.ejs",{title:"Item 2",weight:"weight",cost:"cost",description:"This is the description of item 2.",link:"#"})%>
+            </div>
+            <div>
+                <%-include("partials/cards.ejs",{title:"Item 3",weight:"weight",cost:"cost",description:"This is the description of item 3.",link:"#"})%>
+            </div>
+            <div>
+                <%-include("partials/cards.ejs",{title:"Item 4",weight:"weight",cost:"cost",description:"This is the description of item 4.",link:"#"})%>
+            </div> -->
+
+            <div class="container text-center">
+                <div class="row col row-cols-2">
+                    <div class="col" style="margin: auto; margin-top: 50px;">
+                        <%-include("partials/cards.ejs",{title:"Item 1",weight:"weight",cost:"cost",description:"This is the description of item 1.",link:"#"})%>
+
+                    </div>
+                    <div class="col" style="margin: auto; margin-top: 50px;">
+                        <%-include("partials/cards.ejs",{title:"Item 2",weight:"weight",cost:"cost",description:"This is the description of item 2.",link:"#"})%>
+
+                    </div>
+                    <div class="col" style="margin: auto; margin-top: 50px;">
+                        <%-include("partials/cards.ejs",{title:"Item 3",weight:"weight",cost:"cost",description:"This is the description of item 3.",link:"#"})%>
+
+                    </div>
+                    <div class="col" style="margin: auto; margin-top: 50px;">
+                        <%-include("partials/cards.ejs",{title:"Item 4",weight:"weight",cost:"cost",description:"This is the description of item 4.",link:"#"})%>
+
+                    </div>
+                </div>
+            </div>
+            </body>
+            <%-include("partials/footer.ejs")%>
+
+                </html>

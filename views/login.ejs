@@ -1,0 +1,119 @@
+<%-include("partials/navbar.ejs")%>
+    <%-include("partials/title.ejs",{title:"JEWELLERY STORE"})%>
+        <!-- <form class="card" action="/loginhandler" method="post" style="width: 50%; min-width: 300px; padding: 20px; margin:auto;">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form> -->
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: sans-serif;
+                background: url(/assets/images/image.jpg);
+            }
+            
+            .box {
+                border: 2px solid rgb(210, 179, 3);
+                border-radius: 4px;
+                width: 300px;
+                margin: auto;
+                margin-top: 50px;
+                /* padding: 30px; */
+                /* left: 50%; */
+                text-align: center;
+                /* position: relative; */
+            }
+            
+            .box h1 {
+                color: rgb(210, 179, 3);
+                text-transform: uppercase;
+                font-weight: 700;
+                text-align: center;
+            }
+            
+            .box input[type="text"],
+            .box input[type="password"] {
+                border: 0;
+                background: none;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                border: 3px solid rgb(20, 20, 128);
+                padding: 14px 10px;
+                width: 220px;
+                outline: none;
+                color: rgb(15, 14, 14);
+                border-radius: 24px;
+                transition: 0.25px;
+            }
+            
+            .box input[type="text"]:focus,
+            .box input[type="password"]:focus {
+                border: 3px solid rgb(210, 179, 3);
+                width: 270px;
+            }
+            
+            .box input[type="submit"] {
+                border: 0;
+                width: 100px;
+                background: none;
+                display: block;
+                margin: 20px auto;
+                text-align: center;
+                text-decoration: none;
+                border: 3px solid rgb(210, 179, 3);
+                padding: 14px 10px;
+                outline: none;
+                color: rgb(210, 179, 3);
+                border-radius: 24px;
+                transition: 0.25px;
+                cursor: pointer;
+            }
+            
+            .box input[type="submit"]:hover {
+                background-color: rgb(210, 179, 3);
+                color: white;
+            }
+        </style>
+        <form class="box" action="/loginhandler" method="post">
+            <h1 id="login">
+                Login
+            </h1>
+            <input type="text" name="email" placeholder="Enter Username" id="username">
+            <input type="password" name="password" placeholder="Enter password" id="password">
+            <a href="/profile">
+                <input type="submit" name="" value="Login" id="submit" onclick="validate()">
+            </a>
+
+        </form>
+        <script>
+            function validate() {
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                if (username == "admin" && password == "user") {
+                    alert("login Sucessfullly");
+                    return false;
+                } else {
+                    alert("Invalid Credentials");
+                }
+
+            }
+        </script>
+        </body>
+        <%-include("partials/footer.ejs")%>
+
+            </html>
