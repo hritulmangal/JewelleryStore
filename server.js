@@ -66,6 +66,17 @@ app.post("/additem", async(req, res) => {
     }
 })
 
+app.get("/temp", async(req, res) => {
+    const newItem = new Item({
+        name: "Bangle",
+        weight: "10",
+        price: 52732,
+        desc: "Bangle"
+    })
+    await newItem.save();
+    res.send(200);
+
+})
 
 //get all items
 app.get("/getItems", async(req, res) => {
