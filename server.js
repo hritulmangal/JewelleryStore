@@ -55,7 +55,13 @@ app.post("/loginhandler", async(req, res) => {
     res.redirect("/profile");
 })
 app.get("/viewcart", (req, res) => {
-        res.render('viewcart.ejs');
+    res.render('viewcart.ejs');
+})
+app.get("/orderstatus", (req, res) => {
+    res.render('orderstatus.ejs');
+})
+app.get("/query", (req, res) => {
+        res.render('query.ejs');
     })
     //adding item
 app.post("/additem", async(req, res) => {
