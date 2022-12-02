@@ -17,9 +17,13 @@
                 <label for="validationDefault04 " class="form-label ">Description</label>
                 <input type="text " name="desc" class=" form-control " id="validationDefault04 " required>
             </div>
-            <div class="form-group ">
+            <!-- <div class="form-group ">
                 <label for="exampleFormControlFile1 ">Upload Item Image</label>
                 <input type="file " class="form-control-file " id="exampleFormControlFile1 ">
+            </div> -->
+            <div class="form-group">
+                <label for="exampleFormControlFile1">Upload Item Image </label>
+                <input type="file" name="imageName" class="form-control-file" id="exampleFormControlFile1">
             </div>
             <div class="col-12 ">
                 <a href="# ">
@@ -27,8 +31,11 @@
                 </a>
             </div>
         </form>
+        </body>
+        <%-include("partials/footer.ejs")%>
 
-        <!-- <div>
+            </html>
+            <!-- <div>
     <form class="row g-3 card " action="/additem " method="post " style="width: 50%; color: rgb(210, 179,3); border-color: rgb(210, 179,3); min-width: 300px; padding: 20px; margin:auto; margin-top: 20px; ">
         <div class=" col-md-4 ">
             <label for="validationDefault01 " class="form-label ">Item Name </label>

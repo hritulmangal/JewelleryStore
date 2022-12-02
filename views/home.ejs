@@ -1,9 +1,14 @@
 <%-include("partials/navbar.ejs")%>
     <%-include("partials/title.ejs",{title:"JEWELLERY STORE"})%>
-        <div class="container" style="min-height: 80vh"></div>
-        <a class="btn btn-primary" href="/login" role="button">Log in</a>
-        <a class="btn btn-primary" href="/createAccount" role="button">Create Account</a>
-
+        <div class="container">
+            <div style="width: 400px;height: 500px;border:solid black 2px; background-size: 400px 500px;background-image:url('assets/images/main-bg.jpg');"></div>
+            <div style="width:100%; display: flex;justify-content: space-around;">
+                <a class="btn btn-primary" href="/login" role="button">Log in</a>
+                <a class="btn btn-primary" href="/createAccount" role="button">Create Account</a>
+                <a class="btn btn-primary" href="/addProduct" role="button">Add Product</a>
+                <a class="btn btn-primary" href="/viewcart" role="button">Cart</a>
+            </div>
+        </div>
         </body>
         <%-include("partials/footer.ejs")%>
 
