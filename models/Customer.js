@@ -13,7 +13,7 @@ const CustomerSchema = new Schema({
     city: String,
     state: String,
     zip: Number,
-    cart: [{ type: String }],
+    cart: [{ pid: String, quan: Number }],
     orders: [{ products: [String], orderDate: Date, amount: Number, address: String, mobile: String }]
         // fileName: type
 });

@@ -30,13 +30,13 @@ app.use(express.static(path.join(__dirname, '/assets/')));
 app.use(express.static(path.join(__dirname, '/views/partials/')))
 app.set('view engine', "ejs");
 app.get("/", (req, res) => {
-    res.render('home.ejs', {
+    res.render('first.ejs', {
         username: "Hritul"
     })
 })
-app.get("/profile", async(req, res) => {
+app.get("/home", async(req, res) => {
     const products = await Item.find({});
-    res.render('profile.ejs', { products: products })
+    res.render('home.ejs', { products: products })
 })
 app.get("/login", (req, res) => {
     res.render('login.ejs')
@@ -47,21 +47,52 @@ app.get("/createAccount", (req, res) => {
 app.get("/addProduct", (req, res) => {
     res.render('addProduct.ejs')
 })
-app.get('/addtoCart', (req, res) => {
-    res.sendStatus(200);
+app.get('/addtoCart', async(req, res) => {
+    try {
+        const id = req.query.id;
+        // customer m fine krna h prev cart or check krna h ki id already present or not balbla
+        await Customer.updateOne({ email: "mangalhritul@gmail.com" }, { $push: { cart: { pid: id, quan: 1 } } });
+        res.sendStatus(200);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(401);
+    }
 })
 app.post("/loginhandler", async(req, res) => {
     console.log(req.body);
-    res.redirect("/profile");
+    res.redirect("/home");
 })
-app.get("/viewcart", (req, res) => {
-    res.render('viewcart.ejs');
+app.get("/viewcart", async(req, res) => {
+    const itemIDs = (await Customer.find({ email: "mangalhritul@gmail.com" }))[0].cart;
+    // console.log(itemIDs);
+    const items = [];
+    for (var i = 0; i < itemIDs.length; i++) {
+        let itemID = itemIDs[i].pid;
+        items.push((await Item.find({ _id: itemID }))[0]);
+    }
+    res.render('viewcart.ejs', { items: items });
+})
+app.get("/CustomerProfile", async(req, res) => {
+    const customers = (await Customer.find({ email: "vishnumali3911@gmail.com" }));
+    console.log(customers);
+    const customer = [];
+    for (var i = 0; i < customers.length; i++) {
+        let cid = customers[i]._id;
+        customer.push((await Customer.find({ _id: cid }))[0]);
+    }
+    res.render('cprofile.ejs', { customer: customer });
 })
 app.get("/orderstatus", (req, res) => {
     res.render('orderstatus.ejs');
 })
+app.get("/Vieworder", (req, res) => {
+    res.render('order.ejs');
+})
 app.get("/query", (req, res) => {
-        res.render('query.ejs');
+    res.render('query.ejs');
+})
+app.get("/customerProfile", (req, res) => {
+        res.render('cprofile.ejs');
     })
     //adding item
 app.post("/additem", async(req, res) => {

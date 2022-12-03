@@ -4,11 +4,11 @@
         <!-- <div class="row no-gutters"> -->
         <div class="card" style="min-height: 40vh; width: 60%; min-width: 300px; margin: auto;">
             <div class="product-details mr-2">
-                <div class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i>
+                <!-- <div class="d-flex flex-row align-items-center"><i class="fa fa-long-arrow-left"></i>
                     <h3 class="ml-2" style="padding: 10px;">Continue Shopping</h3>
-                </div>
-                <hr style="margin:2px">
-                <h4 class="mb-0" style="text-align:center;">Shopping cart</h4>
+                </div> -->
+                <!-- <hr style="margin:2px">
+                <h4 class="mb-0" style="text-align:center;">Shopping cart</h4> -->
                 <% for(var i=0;i<items.length;i++) { let item=items[i];%>
                     <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
                         <div class="d-flex flex-row"><img class="rounded" src=<%=item.image%> width="40">
@@ -17,10 +17,8 @@
                         <div class="d-flex flex-row align-items-center"><span class="d-block">2</span><span class="d-block ml-5 font-weight-bold"><%=item.price%></span><i class="fa fa-trash-o ml-3 text-black-50"></i></div>
                     </div>
                     <%}%>
-
             </div>
         </div>
-        <div style="display:flex;justify-content:space-around; margin-top: 20px ;"><button class="btn btn-primary">Place Order</button></div>
         </body>
         <%-include("partials/footer.ejs")%>
 

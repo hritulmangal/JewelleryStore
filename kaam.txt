@@ -1,0 +1,11 @@
+profile page for customers---------------------------------------
+order like cart with 2 for loop in backend
+image url in input in add product//////////
+button position change place at navbar---------------------------------------------------
+customer m find krna h prev cart or check krna h ki id already present or not balbla
+footer thik krna h---------------------------
+order history page
+create accout m input m requierd add krna history except image-------------------
+home page p background images lgani h
+profile page ki jagah home page ki link render krni h-------------------------------
+remove functionality add krni h from cart

@@ -1,17 +1,14 @@
 <%-include("partials/navbar.ejs")%>
     <%-include("partials/title.ejs",{title:"JEWELLERY STORE"})%>
-        <div class="container">
-            <div style="width: 400px;height: 500px;border:solid black 2px; background-size: 400px 500px;background-image:url('assets/images/main-bg.jpg');"></div>
-            <div style="width:100%; display: flex;justify-content: space-around;">
-                <a class="btn btn-primary" href="/login" role="button">Log in</a>
-                <a class="btn btn-primary" href="/createAccount" role="button">Create Account</a>
-                <a class="btn btn-primary" href="/addProduct" role="button">Add Product</a>
-                <a class="btn btn-primary" href="/orderstatus" role="button">Ordertrack/cancel</a>
-                <a class="btn btn-primary" href="/viewcart" role="button">Cart / paymet / order</a>
-                <a class="btn btn-primary" href="/query" role="button">Chat us</a>
+        <%-include("partials/search.ejs")%>
+            <div class="container" style="display:flex;flex-direction:row;flex-wrap:wrap;">
+                <% for(var i=0;i<products.length;i++) {%>
+                    <div class="col" style="margin: auto; margin-top: 50px; min-width: 300px; text-align: center;">
+                        <%-include("partials/cards.ejs",{title:products[i].name,weight:products[i].weight,cost:products[i].price,description:products[i].desc,link:"/addtoCart?id="+products[i]._id})%>
+                    </div>
+                    <%}%>
             </div>
-        </div>
-        </body>
-        <%-include("partials/footer.ejs")%>
+            </body>
+            <%-include("partials/footer.ejs")%>
 
-            </html>
+                </html>
