@@ -12,7 +12,8 @@ app.use(bodyParser.json())
 const path = require('path')
     //import models
 const Item = require("./models/Item")
-const Customer = require("./models/Customer")
+const Customer = require("./models/Customer");
+const { getMaxListeners } = require('process');
 
 //db connection config
 mongoose.connect(process.env.DB_URI, {
@@ -22,9 +23,9 @@ mongoose.connection.on("error", err => {
     console.log("err", err)
 })
 mongoose.connection.on("connected", (err, res) => {
-    console.log("database is connected")
-})
-console.log(path.join(__dirname, '/assets/'));
+        console.log("database is connected")
+    })
+    // console.log(path.join(__dirname, '/assets/'));
 app.use(express.static(path.join(__dirname, '/assets/')));
 
 app.use(express.static(path.join(__dirname, '/views/partials/')))
@@ -36,6 +37,7 @@ app.get("/", (req, res) => {
 })
 app.get("/home", async(req, res) => {
     const products = await Item.find({});
+    console.log(products);
     res.render('home.ejs', { products: products })
 })
 app.get("/login", (req, res) => {
@@ -52,14 +54,30 @@ app.get('/addtoCart', async(req, res) => {
         const id = req.query.id;
         // customer m fine krna h prev cart or check krna h ki id already present or not balbla
         await Customer.updateOne({ email: "mangalhritul@gmail.com" }, { $push: { cart: { pid: id, quan: 1 } } });
-        res.sendStatus(200);
+        // res.sendStatus(200);
+        res.redirect('/viewcart')
     } catch (err) {
         console.log(err);
         res.sendStatus(401);
     }
 })
+
+//delete from cart
+app.get('/removefromCart', async(req, res) => {
+    try {
+        const id = req.query.id;
+        // customer m fine krna h prev cart or check krna h ki id already present or not balbla
+        await Customer.updateOne({ email: "mangalhritul@gmail.com" }, { $pull: { cart: { pid: id, quan: 1 } } });
+        // res.sendStatus(200);
+        res.render("/viewcart");
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(401);
+    }
+})
+
 app.post("/loginhandler", async(req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     res.redirect("/home");
 })
 app.get("/viewcart", async(req, res) => {
@@ -73,8 +91,8 @@ app.get("/viewcart", async(req, res) => {
     res.render('viewcart.ejs', { items: items });
 })
 app.get("/CustomerProfile", async(req, res) => {
-    const customers = (await Customer.find({ email: "vishnumali3911@gmail.com" }));
-    console.log(customers);
+    const customers = (await Customer.find({ email: "mangalhritul@gmail.com" }));
+    // console.log(customers);
     const customer = [];
     for (var i = 0; i < customers.length; i++) {
         let cid = customers[i]._id;
@@ -85,8 +103,8 @@ app.get("/CustomerProfile", async(req, res) => {
 app.get("/orderstatus", (req, res) => {
     res.render('orderstatus.ejs');
 })
-app.get("/Vieworder", (req, res) => {
-    res.render('order.ejs');
+app.get("/order", (req, res) => {
+    res.render('order.ejs', { items: [{ orderDate: "12 july 2022", amount: 528, address: "oat mnit jaipur" }] });
 })
 app.get("/query", (req, res) => {
     res.render('query.ejs');
@@ -94,15 +112,36 @@ app.get("/query", (req, res) => {
 app.get("/customerProfile", (req, res) => {
         res.render('cprofile.ejs');
     })
-    //adding item
+    //adding item;lm
+app.get("/addorder", async(req, res) => {
+    const prevData = (await Customer.findOne({ email: "mangalhritul@gmail.com" }));
+    // console.log(prevData)
+    const availableCart = [];
+    for (var i = 0; i < prevData.cart.length; i++) {
+        availableCart.push(prevData.cart[i]);
+    }
+    console.log("hehe", availableCart);
+    var subtotal = 0;
+    for (var i = 0; i < availableCart.length; i++) {
+        let pid = availableCart[i].pid;
+        const price = (await Item.find({ pid: pid }))[0].price;
+        subtotal += price;
+    }
+    const address = prevData.address;
+    const mobile = prevData.Contact;
+
+    const data = await Customer.updateOne({ email: "mangalhritul@gmail.com" }, { $push: { orders: { orderDate: Date.now(), amount: subtotal, address: address, mobile: mobile } } })
+    res.sendStatus(200);
+})
 app.post("/additem", async(req, res) => {
         const data = req.body;
-        console.log(data);
+        // console.log(data);
         try {
-            const newItem = new Item({ name: data.name, weight: data.weight, price: data.cost, desc: data.desc });
+            const newItem = new Item({ name: data.name, weight: data.weight, price: data.cost, desc: data.desc, image: data.image });
             await newItem.save();
             console.log("inserted successfully");
-            res.sendStatus(200);
+            // res.sendStatus(200);
+            res.redirect("/home");
         } catch (err) {
             console.log(err)
             res.send("Error in adding item");
@@ -112,7 +151,7 @@ app.post("/additem", async(req, res) => {
     //add to cart
 app.post("/createAccounthandler", async(req, res) => {
         const data = req.body;
-        console.log(data);
+        // console.log(data);
         try {
             const newCustomer = new Customer({ firstname: data.firstname, lastname: data.lastname, username: data.username, email: data.email, password: data.password, Contact: data.Contact, address: data.address, address2: data.address2, city: data.city, state: data.state, zip: data.zip });
             await newCustomer.save();
@@ -147,7 +186,7 @@ app.post("/createAccounthandler", (req, res) => {
     res.sendStatus(200);
 })
 app.post("/additem", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     res.sendStatus(200);
 })
 app.listen(4500);

@@ -1,13 +1,23 @@
 <%-include("partials/navbar.ejs")%>
     <%-include("partials/title.ejs",{title:"JEWELLERY STORE"})%>
         <%-include("partials/search.ejs")%>
-            <div class="container" style="display:flex;flex-direction:row;flex-wrap:wrap;">
+            <div class="container" id="myTable" style="display:flex;flex-direction:row;flex-wrap:wrap;">
                 <% for(var i=0;i<products.length;i++) {%>
                     <div class="col" style="margin: auto; margin-top: 50px; min-width: 300px; text-align: center;">
-                        <%-include("partials/cards.ejs",{title:products[i].name,weight:products[i].weight,cost:products[i].price,description:products[i].desc,link:"/addtoCart?id="+products[i]._id})%>
+                        <%-include("partials/cards.ejs",{title:products[i].name,weight:products[i].weight,cost:products[i].price,image:products[i].image,description:products[i].desc,link:"/addtoCart?id="+products[i]._id})%>
                     </div>
                     <%}%>
             </div>
+            <script>
+                $(document).ready(function() {
+                    $("#myInput").on("keyup", function() {
+                        var value = $(this).val().toLowerCase();
+                        $("#myTable .col").filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                    });
+                });
+            </script>
             </body>
             <%-include("partials/footer.ejs")%>
 
